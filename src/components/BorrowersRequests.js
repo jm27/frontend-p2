@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom'
+
 import Layout from './core/Layout'
 
 const BorrowersRequests = () => {
@@ -9,9 +11,11 @@ const BorrowersRequests = () => {
     useEffect(() => {
         // Fetch borrowers loan requests
         const fetchBorrowersLoanRequests = async () => {
-            const BorrowersLoanRequests = await fetch("http://localhost:8080/borrowers/borrowers-requests")
+            const borrowersLoanRequests = await fetch("http://localhost:8080/borrowers/borrowers-requests")
                 .then(data => data.json())
                 .then(user => setBorrowersLoanRequests(user))
+
+            return borrowersLoanRequests;
         }
         fetchBorrowersLoanRequests()
 
@@ -19,7 +23,7 @@ const BorrowersRequests = () => {
 
     // Display borrowers loan requests
     const displayBorrowersLoanRequests = () => (
-        <div>
+        <>
             {borrowersLoanRequests.map((borrower, index) => (
                 <div className="card borrowersLoanRequests" style={{ width: '18rem' }} key={index}>
                     <div className="card-body">
@@ -32,13 +36,13 @@ const BorrowersRequests = () => {
                     </div>
                 </div>
             ))}
-        </div>
+        </>
     )
 
 
     return (
-        <Layout>
-            <div>
+        <Layout title='Borrower’s loan requests' description='Details from tickets'>
+            <div class="card-deck">
                 {displayBorrowersLoanRequests()}
             </div>
         </Layout>

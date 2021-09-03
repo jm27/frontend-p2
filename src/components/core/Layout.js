@@ -5,7 +5,7 @@ import NavBar from './NavBar';
 const Layout = ({
     title = "Title",
     description = "Description",
-    className,
+    className = 'one',
     children
 }) => {
     return (<div>

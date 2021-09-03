@@ -26,3 +26,30 @@ code {
 li {
   padding-right: 2em;
 }
+
+/* .one::after,
+.one::before {
+  position: absolute;
+  content: "";
+  width: 80px;
+  height: 80px;
+  background: #e9ecef;
+  bottom: 21rem;
+  z-index: 100;
+}
+
+.one::before {
+  right: 50%;
+  transform: skew(0, 20deg);
+}
+
+.one::after {
+  left: 50%;
+  transform: skew(0, -20deg);
+} */
+
+.card-deck{
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}

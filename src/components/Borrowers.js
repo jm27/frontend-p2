@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom'
+
 
 import Layout from './core/Layout'
 
@@ -8,9 +10,11 @@ const Borrowers = () => {
     useEffect(() => {
         // Fetch borrowers
         const fetchBorrowers = async () => {
-            const Borrowers = await fetch("http://localhost:8080/borrowers")
+            const borrowers = await fetch("http://localhost:8080/borrowers")
                 .then(data => data.json())
                 .then(user => setBorrowers(user))
+
+            return borrowers;
         }
 
         fetchBorrowers();
@@ -19,9 +23,13 @@ const Borrowers = () => {
 
     // Display borrowers
     const displayBorrowers = () => (
-        <div>
+        <>
             {borrowers.map((borrower, index) => (
-                <div className="card borrowers" style={{ width: '18rem' }} key={index}>
+                <div className="card borrowers" style={{ width: '33vw' }} key={index}>
+                    <img class="card-img-top img-fluid rounded img-thumbnail"
+                        src={index % 2 === 0 ? './resources/imgs/kristy.png'
+                            : './resources/imgs/matthew.png'}
+                        alt="Card cap" />
                     <div className="card-body">
                         <h5 className="card-title">Full name: {borrower.first_name}, {borrower.last_name} </h5>
                         <p className="card-text">Funds : {borrower.funds}</p>
@@ -31,13 +39,13 @@ const Borrowers = () => {
                     </div>
                 </div>
             ))}
-        </div>
+       </>
     )
 
 
     return (
-        <Layout>
-            <div>
+        <Layout title='Borrowers' description='supply their desired loan amount and relevant details'>
+            <div class="card-deck">
                 {displayBorrowers()}
             </div>
         </Layout>

@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Layout from './core/Layout';
+import { Link } from 'react-router-dom'
+
 
 const Lenders = () => {
     // State lenders
@@ -10,6 +12,8 @@ const Lenders = () => {
             const lenders = await fetch("http://localhost:8080/lenders")
                 .then(data => data.json())
                 .then(lenders => setLenders(lenders))
+
+            return lenders;
         }
         fetchLenders()
     }, [lenders])
@@ -17,9 +21,13 @@ const Lenders = () => {
 
     // Display lenders
     const displayLenders = () => (
-        <div>
+      <>
             {lenders.map((lender, index) => (
                 <div className="card lenders" style={{ width: '18rem' }} key={index}>
+                    <img class="card-img-top img-fluid rounded img-thumbnail"
+                        src={index % 2 === 0 ? './resources/imgs/kristy.png'
+                            : './resources/imgs/matthew.png'}
+                        alt="Card cap" />
                     <div className="card-body">
                         <h5 className="card-title">Full name: {lender.firstName}, {lender.lastName} </h5>
                         <p className="card-text">Phone Number: {lender.phoneNumber}</p>
@@ -29,12 +37,14 @@ const Lenders = () => {
                     </div>
                 </div>
             ))}
-        </div>
+     </>
     )
 
     return (
-        <Layout>
-             {displayLenders()}
+        <Layout title='Lenders' description='Register by filling in relevant details, including the total amount they want to invest'>
+            <div class="card-deck">
+                {displayLenders()}
+            </div>
         </Layout>
     )
 }

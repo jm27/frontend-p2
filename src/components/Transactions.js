@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom'
+
 import Layout from './core/Layout'
 
 const Transactions = () => {
@@ -12,13 +14,15 @@ const Transactions = () => {
             const transactions = await fetch("http://localhost:8080/transactions")
                 .then(data => data.json())
                 .then(transaction => setTransactions(transaction))
+
+            return transactions;
         }
         fetchTransactions()
     }, [transactions])
 
     // Display transactions
     const displayTransactions = () => (
-        <div>
+        <>
             {transactions.map((transaction, index) => (
                 <div className="card transactions" style={{ width: '18rem' }} key={index}>
                     <div className="card-body">
@@ -34,12 +38,12 @@ const Transactions = () => {
                     </div>
                 </div>
             ))}
-        </div>
+        </>
     )
 
     return (
-        <Layout>
-            <div>
+        <Layout title='Transactions' description='Details from borrowers and lenders'>
+            <div class="card-deck">
                 {displayTransactions()}
             </div>
         </Layout>

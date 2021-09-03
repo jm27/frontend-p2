@@ -1,8 +1,6 @@
 import React from 'react'
 import Layout from './core/Layout'
 
-import { useState, useEffect } from 'react'
-import { Link } from 'react-router-dom'
 
 const Home = () => {
     /* TODO */
@@ -22,15 +20,22 @@ const Home = () => {
     // Display lenders by id
     // Display transactions by id
 
-
+    /*
+   
+    */
 
     return (
-        <Layout>
-            <h1>Lending App</h1>
-            <button type="button" className="btn btn-success">Success</button>
+        <Layout title="Peer-to-Peer Lending Platform" description="Bringing borrowers and investors together and allow them to choose to whom they want to lend their money">
+            <div>
+                <h3 className='mb-4 mt-5 pt-3'>Get Started</h3>
+                <button type="button" className="btn btn btn-outline-dark m-3">Request a Loan</button>
 
-            <button type="button" className="btn btn-success">Success</button>
+                <button type="button" className="btn btn btn-outline-dark m-3">Make a Loan</button>
+                <div>
+                    <img alt='welcome img' className='img w-50' src='./resources/imgs/social-support.jpg' />
+                </div>
 
+            </div>
         </Layout>
     )
 }
