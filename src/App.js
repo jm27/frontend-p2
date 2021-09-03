@@ -1,24 +1,25 @@
-import logo from './logo.svg';
 import './App.css';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import Home from './components/Home';
+import NotFoundPage from './components/NotFoundPage';
+import Lenders from './components/Lenders';
+import Borrowers from './components/Borrowers';
+import BorrowersRequests from './components/BorrowersRequests';
+import Transactions from './components/Transactions';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <Switch>
+        <Route path='/' component={Home} exact />
+        <Route path='/lenders' component={Lenders} />
+        <Route path='/borrowers' component={Borrowers} />
+        <Route path='/borrowers-requests' component={BorrowersRequests} />
+        <Route path='/transactions' component={Transactions} />
+        <Route path='/lenders/:id' component={Lenders} />
+        <Route component={NotFoundPage}></Route>
+      </Switch>
+    </Router>
   );
 }
 
